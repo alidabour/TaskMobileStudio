@@ -22,7 +22,7 @@ public class MainActivity extends DownloadActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         JsonParser jsonParser = new JsonParser();
-        String[] objects = {"results"};
+        String[] objects = {"poster_path","id"};
         jsonParser.setObjects(objects);
         setParser(jsonParser);
     }

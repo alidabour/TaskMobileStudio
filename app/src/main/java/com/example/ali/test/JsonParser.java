@@ -43,7 +43,7 @@ public class JsonParser extends SuperParser {
 
     public String[] getPosterURLs() throws JSONException {
         JSONObject movieJson = new JSONObject(this.json);
-//        Log.v("Test","Keys: "+movieJson.keys().next());
+//        Log.v("MainActivity","Keys: "+movieJson.keys().next());
 //        Iterator<?> keys = movieJson.keys();
 //        while (keys.hasNext()) {
 //            String key = (String) keys.next();

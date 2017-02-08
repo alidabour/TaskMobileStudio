@@ -57,6 +57,6 @@ public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.v("Test","Result: "+s);
+        Log.v("MainActivity","Result: "+s);
     }
 }

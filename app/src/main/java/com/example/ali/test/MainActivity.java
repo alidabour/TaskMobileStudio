@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Ali on 2/7/2017.
  */
 
-public class Test extends DownloadActivity {
+public class MainActivity extends DownloadActivity {
     OnResult onResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +41,19 @@ public class Test extends DownloadActivity {
                 .build();
 
         setUrl(builtUri.toString());
-        Log.v("Test","Url :"+ builtUri.toString());
+        Log.v("MainActivity","Url :"+ builtUri.toString());
         onResult = new DownloadActivity.OnResult(){
 
             @Override
             public void onSuccess(List<Movie> result) {
                 for (Movie m:result){
-                    Log.v("Test","OnSuccess "+ m.getPosterUrl());
+                    Log.v("MainActivity","OnSuccess "+ m.getPosterUrl());
                 }
             }
 
             @Override
             public void onError(String errorMessage) {
-                Log.v("Test","OnError "+ errorMessage);
+                Log.v("MainActivity","OnError "+ errorMessage);
             }
         };
         try {

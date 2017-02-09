@@ -10,6 +10,7 @@ import com.example.ali.test.controller.activity.DownloadActivity;
  */
 
 public class MainActivity extends DownloadActivity {
+    String url  = "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=144eefdfe75e0f8cb5d9f9b68d178670";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

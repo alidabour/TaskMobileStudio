@@ -72,14 +72,25 @@ public class DetailFragment extends Fragment {
         ((MainActivity)getActivity()).setParser(jsonParser);
         ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
         Log.v("Test","Reviews Url : "+builtUri.toString());
-        onResultListenerReviews = new DownloadActivity.OnResultListener(){
+//        onResultListenerReviews = new DownloadActivity.OnResultListener(){
+//            @Override
+//            public void onSuccess(List<Object> movies) {
+//                Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
+//                for (Object x:movies){
+//                    text += " Author : "+((Movie)x).getAuthor()+ "\n";
+//                    text += " Content :"+((Movie)x).getContent()+"\n";
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onError(String errorMessage) {
+//
+//            }
+//        };
+        onResultListenerReviews = new DownloadActivity.OnResultListener() {
             @Override
-            public void onSuccess(List<Object> movies) {
-                Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
-                for (Object x:movies){
-                    text += " Author : "+((Movie)x).getAuthor()+ "\n";
-                    text += " Content :"+((Movie)x).getContent()+"\n";
-                }
+            public void onSuccess(String response) {
 
             }
 
@@ -106,17 +117,28 @@ public class DetailFragment extends Fragment {
         jsonParser.setObjects(objects2);
         ((MainActivity)getActivity()).setParser(jsonParser);
         ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
-        onResultListenerVideos = new DownloadActivity.OnResultListener(){
+//        onResultListenerVideos = new DownloadActivity.OnResultListener(){
+//            @Override
+//            public void onSuccess(List<Object> movies) {
+//                for (Object x:movies){
+//                    Log.v("Test","DF. OnSuccess2 Key :"+ ((Movie)x).getKey());
+//                    text += " name : "+((Movie)x).getName() + "\n";
+//                    text += " key :"+((Movie)x).getKey() +"\n";
+//
+//                }
+//                title.setText(text);
+//            }
+//            @Override
+//            public void onError(String errorMessage) {
+//
+//            }
+//        };
+        onResultListenerVideos = new DownloadActivity.OnResultListener() {
             @Override
-            public void onSuccess(List<Object> movies) {
-                for (Object x:movies){
-                    Log.v("Test","DF. OnSuccess2 Key :"+ ((Movie)x).getKey());
-                    text += " name : "+((Movie)x).getName() + "\n";
-                    text += " key :"+((Movie)x).getKey() +"\n";
+            public void onSuccess(String response) {
 
-                }
-                title.setText(text);
             }
+
             @Override
             public void onError(String errorMessage) {
 

@@ -18,9 +18,10 @@ import java.net.URL;
 public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
     @Override
     protected String doInBackground(URL... urls) {
+        Log.v("Test","Start of Async Task");
         String result=null;
         for (URL url:urls){
-            Log.v("Test","Download Urls : "+urls.length);
+//            Log.v("Test","Download Urls : "+urls.length);
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
@@ -57,6 +58,6 @@ public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Log.v("MainActivity","Result: "+s);
+//        Log.v("MainActivity","Result: "+s);
     }
 }

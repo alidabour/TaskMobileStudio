@@ -14,6 +14,8 @@ public class Movie implements Parcelable,DataModel{
     private String title;
     private String author;
     private String content;
+    private String key;
+    private String name;
 
     public Movie(){
 
@@ -23,12 +25,16 @@ public class Movie implements Parcelable,DataModel{
         this.title = data.get("title");
         this.author = data.get("author");
         this.content = data.get("content");
+        this.key = data.get("key");
+        this.name = data.get("name");
     }
     public Movie(Parcel in) {
         this.posterUrl = in.readString();
         this.title = in.readString();
         this.author = in.readString();
         this.content = in.readString();
+        this.key = in.readString();
+        this.name = in.readString();
     }
     @Override
     public void setData(HashMap<String,String> data){
@@ -36,6 +42,8 @@ public class Movie implements Parcelable,DataModel{
         this.title = data.get("title");
         this.author = data.get("author");
         this.content = data.get("content");
+        this.key = data.get("key");
+        this.name = data.get("name");
     }
 
     @Override
@@ -44,6 +52,8 @@ public class Movie implements Parcelable,DataModel{
         dest.writeString(this.title);
         dest.writeString(this.author);
         dest.writeString(this.content);
+        dest.writeString(this.key);
+        dest.writeString(this.name);
 
     }
 
@@ -78,6 +88,12 @@ public class Movie implements Parcelable,DataModel{
     }
     public String getContent() {
         return content;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getKey() {
+        return key;
     }
 //    public void setTitle(String title) {
 //        this.title = title;

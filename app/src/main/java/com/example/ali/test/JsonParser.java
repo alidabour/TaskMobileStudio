@@ -58,7 +58,7 @@ public class JsonParser extends SuperParser {
     }
 
     public void parseJson(JSONObject jsonObject) throws ParseException, JSONException {
-        Log.v("JSONTest","ParseJson :"+jsonObject);
+//        Log.v("JSONTest","ParseJson :"+jsonObject);
         Iterator<String> iterator = jsonObject.keys();
         HashMap<String,String> map = new HashMap<>();
         while (iterator.hasNext()) {
@@ -70,7 +70,7 @@ public class JsonParser extends SuperParser {
                     parseJson((JSONObject) jsonObject.get(obj.toString()));
                 } else {
                     if( Arrays.asList(objects).contains(obj.toString())){
-                        Log.v("JSONTest","Objects :"+jsonObject.get(obj.toString()).toString());
+//                        Log.v("JSONTest","Objects :"+jsonObject.get(obj.toString()).toString());
                     }
 //                    for (String x:objects){
 //                        if (obj.toString().equals(x)){
@@ -81,7 +81,7 @@ public class JsonParser extends SuperParser {
                         posterPathUrls.add(jsonObject.get(obj.toString()).toString());
                     }
                     map.put(obj.toString(),jsonObject.get(obj.toString()).toString());
-                    Log.v("JSONTest","else : "+obj+"  ,  "+jsonObject.get(obj.toString()));
+//                    Log.v("JSONTest","else : "+obj+"  ,  "+jsonObject.get(obj.toString()));
                 }
             }
         }

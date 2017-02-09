@@ -24,8 +24,8 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class DetailFragment extends Fragment {
-    DownloadActivity.OnResult onResult;
-    DownloadActivity.OnResult onResult2;
+    DownloadActivity.OnResult onResultReviews;
+    DownloadActivity.OnResult onResultVideos;
     TextView title;
     public DetailFragment() {
         // Required empty public constructor
@@ -34,11 +34,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] objects = {"author","content"};
-        JsonParser jsonParser = new JsonParser();
-        jsonParser.setObjects(objects);
-        ((MainActivity)getActivity()).setParser(jsonParser);
-        ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
+
 
     }
 
@@ -65,9 +61,13 @@ public class DetailFragment extends Fragment {
                 .appendQueryParameter(APPID_PARAM,"144eefdfe75e0f8cb5d9f9b68d178670")
                 .build();
         ((MainActivity)getActivity()).setUrl(builtUri.toString());
-
+        String[] objects = {"author","content"};
+        JsonParser jsonParser = new JsonParser();
+        jsonParser.setObjects(objects);
+        ((MainActivity)getActivity()).setParser(jsonParser);
+        ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
         Log.v("Test","Reviews Url : "+builtUri.toString());
-        onResult = new DownloadActivity.OnResult(){
+        onResultReviews = new DownloadActivity.OnResult(){
             @Override
             public void onSuccess(List<Object> movies) {
                 Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
@@ -80,25 +80,38 @@ public class DetailFragment extends Fragment {
             }
         };
         try {
-            ((MainActivity)getActivity()).fetch(onResult);
+            ((MainActivity)getActivity()).fetch(onResultReviews);
         } catch (InterruptedException | MalformedURLException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
+
+
+        builtUri= Uri.parse(MOVIE_BASE_URL).buildUpon()
+                .appendPath("346672")
+                .appendPath("videos")
+                .appendQueryParameter(APPID_PARAM,"144eefdfe75e0f8cb5d9f9b68d178670")
+                .build();
         ((MainActivity)getActivity()).setUrl(builtUri.toString());
-        onResult2 = new DownloadActivity.OnResult(){
+
+        String[] objects2 = {"key","name"};
+        jsonParser.setObjects(objects2);
+        ((MainActivity)getActivity()).setParser(jsonParser);
+        ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
+        onResultVideos = new DownloadActivity.OnResult(){
             @Override
             public void onSuccess(List<Object> movies) {
-                Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
+                for (Object x:movies){
+                    Log.v("Test","DF. OnSuccess2 Key :"+ ((Movie)x).getKey());
 
+                }
             }
-
             @Override
             public void onError(String errorMessage) {
 
             }
         };
         try {
-            ((MainActivity)getActivity()).fetch(onResult2);
+            ((MainActivity)getActivity()).fetch(onResultVideos);
         } catch (InterruptedException | MalformedURLException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

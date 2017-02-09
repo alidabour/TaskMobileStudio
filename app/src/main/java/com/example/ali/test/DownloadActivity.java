@@ -39,44 +39,37 @@ public abstract class DownloadActivity extends AppCompatActivity {
         this.parser.setData(this.dataDownloaded);
         List<HashMap<String,String>> maps ;
         maps=this.parser.getData();
-//        List<String> posterUrls = this.parser.getData();
-//        List<Movie> movies = new ArrayList<Movie>();
-//        for (HashMap<String,String> x:maps){
-//            Movie m = new Movie();
-//            m.setPosterUrl(x.get("poster_path"));
-//            m.setTitle(x.get("title"));
-//            Log.v("Test","DA url :"+m.getPosterUrl());
-//            movies.add(m);
-//        }
+
         List<Object> moviesObjects  = new ArrayList<>();
         for (HashMap<String,String> x:maps) {
-            String data = "x";
             Log.v("Test","HashMap values : "+x.toString());
             Object object=null;
             Class<?> cla=null;
             try {
                 cla = Class.forName(dataModel);
-                Log.v("Test","Mission DataModel name:"+DataModel.class);
-                Log.v("Test","Mission "+cla.getName());
+//                Log.v("Test","Mission DataModel name:"+DataModel.class);
+//                Log.v("Test","Mission "+cla.getName());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 Log.v("Test","Mission error :"+e);
             }
             Constructor<?> ctor = null;
             try {
-                Log.v("Test","HashMap poster_path : "+x.get("poster_path"));
+//                Log.v("Test","HashMap poster_path : "+x.get("poster_path"));
                 ctor = cla.getConstructor(HashMap.class);
 //                Method m = cla.getMethod("setData",HashMap.class);
 //                Log.v("Test","Method : "+cla.getMethod("setData",HashMap.class));
 //                m.invoke(x);
-                Log.v("Test","Constructor :"+ctor.getName());
+//                Log.v("Test","Constructor :"+ctor.getName());
             } catch (NoSuchMethodException e) {
                 Log.v("Test","Mission error :"+e);
             }
             try {
                 object = ctor.newInstance(x);
-                Log.v("Test","PosterUrl: "+((Movie)object).getPosterUrl());
-                Log.v("Test","Author: "+((Movie)object).getAuthor());
+
+//                Log.v("Test","PosterUrl: "+((Movie)object).getPosterUrl());
+                Log.v("Test","DownloadActivity Author: "+((Movie)object).getAuthor());
+                Log.v("Test","DownloadActivity Key: "+((Movie)object).getKey());
 
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 Log.v("Test","Mission error :"+e);

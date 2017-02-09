@@ -1,7 +1,9 @@
 package com.example.ali.test;
 
+import android.os.LocaleList;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 /**
  * Created by Ali on 2/8/2017.
@@ -9,16 +11,20 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable{
     private String posterUrl;
+    private String title;
 
     public Movie(){
 
     }
     public Movie(Parcel in) {
         this.posterUrl=in.readString();
+        this.title=in.readString();
     }
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.posterUrl);
+        dest.writeString(this.title);
+
     }
 
     @Override
@@ -43,5 +49,11 @@ public class Movie implements Parcelable{
     }
     public String getPosterUrl(){
         return this.posterUrl;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

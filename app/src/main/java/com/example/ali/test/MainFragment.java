@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.ali.test.adapter.MovieRecycleAdapter;
 
@@ -31,6 +32,8 @@ public class MainFragment extends Fragment {
     RecyclerView recyclerView;
     MovieRecycleAdapter movieRecycleAdapter;
     DownloadActivity.OnResult onResult;
+
+    Button button;
     public MainFragment() {
         // Required empty public constructor
     }
@@ -52,7 +55,19 @@ public class MainFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.mainRecycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        button = (Button) view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("Test","onClick");
+                ((MainActivity)getActivity()).getSupportFragmentManager().beginTransaction()
+//                        .detach(MainFragment.this)
+//                        .hide(MainFragment.this)
+//                        .remove(MainFragment.this)
+                        .replace(R.id.fragment,new DetailFragment())
+                        .commit();
+            }
+        });
         return  view;
     }
 
@@ -75,6 +90,7 @@ public class MainFragment extends Fragment {
             public void onSuccess(List<Movie> result) {
                 movieRecycleAdapter = new MovieRecycleAdapter(getContext(), result);
                 recyclerView.setAdapter(movieRecycleAdapter);
+
                 for (Movie m:result){
                     Log.v("MainFragment","OnSuccess "+ m.getPosterUrl());
                 }

@@ -26,7 +26,7 @@
                 android:id="@+id/title"
                 android:textSize="18sp"
                 android:textAllCaps="true"
-                android:lines="1"
+                android:lines="2"
                 android:textColor="#111"
                 android:layout_below="@+id/poster"
                 android:layout_width="wrap_content"

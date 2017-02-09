@@ -10,6 +10,8 @@ import org.json.JSONException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -30,11 +32,15 @@ public abstract class DownloadActivity extends AppCompatActivity {
         }
         this.dataDownloaded=d.execute(urls).get();
         this.parser.setData(this.dataDownloaded);
-        List<String> posterUrls = this.parser.getData();
+        List<HashMap<String,String>> maps ;
+        maps=this.parser.getData();
+//        List<String> posterUrls = this.parser.getData();
         List<Movie> movies = new ArrayList<Movie>();
-        for (String x:posterUrls){
+        for (HashMap<String,String> x:maps){
             Movie m = new Movie();
-            m.setPosterUrl(x);
+            m.setPosterUrl(x.get("poster_path"));
+            m.setTitle(x.get("title"));
+            Log.v("Test","DA url :"+m.getPosterUrl());
             movies.add(m);
         }
         this.onResult= onResult;

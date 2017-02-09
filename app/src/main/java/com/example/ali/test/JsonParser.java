@@ -28,12 +28,11 @@ public class JsonParser extends SuperParser {
         this.json = json;
     }
     @Override
-    public List<String> getData() {
+    public List<HashMap<String,String>> getData() {
         try {
             parseJson(new JSONObject(this.json));
-            for (int i=0; i<maps.size(); i++)
-            Log.v("JSONTest","OverView: "+maps.get(i).get("id"));
-            return posterPathUrls;
+//            return posterPathUrls;
+            return maps;
         } catch (JSONException e) {
             e.printStackTrace();
         }

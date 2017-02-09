@@ -1,5 +1,6 @@
 package com.example.ali.test;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -8,6 +9,6 @@ import java.util.List;
 
 public abstract class SuperParser {
     public abstract void setData(String data);
-    public abstract List<String> getData();
+    public abstract List<HashMap<String,String>> getData();
     public abstract void setObjects(String[] objects);
 }

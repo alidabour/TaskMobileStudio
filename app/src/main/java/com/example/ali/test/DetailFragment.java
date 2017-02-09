@@ -27,6 +27,7 @@ public class DetailFragment extends Fragment {
     DownloadActivity.OnResult onResultReviews;
     DownloadActivity.OnResult onResultVideos;
     TextView title;
+    String text = " ";
     public DetailFragment() {
         // Required empty public constructor
     }
@@ -71,6 +72,10 @@ public class DetailFragment extends Fragment {
             @Override
             public void onSuccess(List<Object> movies) {
                 Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
+                for (Object x:movies){
+                    text += " Author : "+((Movie)x).getAuthor()+ "\n";
+                    text += " Content :"+((Movie)x).getContent()+"\n";
+                }
 
             }
 
@@ -102,8 +107,11 @@ public class DetailFragment extends Fragment {
             public void onSuccess(List<Object> movies) {
                 for (Object x:movies){
                     Log.v("Test","DF. OnSuccess2 Key :"+ ((Movie)x).getKey());
+                    text += " name : "+((Movie)x).getName() + "\n";
+                    text += " key :"+((Movie)x).getKey() +"\n";
 
                 }
+                title.setText(text);
             }
             @Override
             public void onError(String errorMessage) {

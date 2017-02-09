@@ -2,7 +2,6 @@ package com.example.ali.test;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,13 +19,11 @@ public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
     protected String doInBackground(URL... urls) {
         Log.v("Test","Start of Async Task");
         String result=null;
-        for (URL url:urls){
-//            Log.v("Test","Download Urls : "+urls.length);
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpURLConnection) urls[0].openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
                 InputStream inputStream = urlConnection.getInputStream();
@@ -51,7 +48,7 @@ public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
         return result;
     }
 

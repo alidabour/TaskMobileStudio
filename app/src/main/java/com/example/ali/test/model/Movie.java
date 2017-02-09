@@ -1,4 +1,4 @@
-package com.example.ali.test.data;
+package com.example.ali.test.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

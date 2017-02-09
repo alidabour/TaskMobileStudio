@@ -1,15 +1,9 @@
-package com.example.ali.test;
+package com.example.ali.test.controller.activity;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.MalformedURLException;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+import com.example.ali.test.R;
+import com.example.ali.test.controller.activity.DownloadActivity;
 
 /**
  * Created by Ali on 2/7/2017.

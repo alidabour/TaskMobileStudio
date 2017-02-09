@@ -1,4 +1,4 @@
-package com.example.ali.test;
+package com.example.ali.test.controller.fragment;
 
 
 import android.net.Uri;
@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ali.test.controller.activity.DownloadActivity;
+import com.example.ali.test.JsonParser;
+import com.example.ali.test.controller.activity.MainActivity;
+import com.example.ali.test.R;
 import com.example.ali.test.adapter.MovieRecycleAdapter;
-import com.example.ali.test.data.Movie;
+import com.example.ali.test.model.Movie;
 
 import org.json.JSONException;
 
@@ -30,7 +34,7 @@ public class MainFragment extends Fragment {
 
     RecyclerView recyclerView;
     MovieRecycleAdapter movieRecycleAdapter;
-    DownloadActivity.OnResult onResult;
+    DownloadActivity.OnResultListener onResultListener;
 
     Button button;
     public MainFragment() {
@@ -84,7 +88,7 @@ public class MainFragment extends Fragment {
                 .build();
 
         ((MainActivity)getActivity()).setUrl(builtUri.toString());
-        onResult = new DownloadActivity.OnResult(){
+        onResultListener = new DownloadActivity.OnResultListener(){
 
             @Override
             public void onSuccess(List<Object> result) {
@@ -102,7 +106,7 @@ public class MainFragment extends Fragment {
             }
         };
         try {
-            ((MainActivity)getActivity()).fetch(onResult);
+            ((MainActivity)getActivity()).fetch(onResultListener);
         } catch (InterruptedException | MalformedURLException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

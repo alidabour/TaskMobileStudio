@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.ali.test.data.Movie;
+import com.example.ali.test.model.Movie;
 import com.example.ali.test.R;
 
 import java.util.List;

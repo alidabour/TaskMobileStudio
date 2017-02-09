@@ -1,4 +1,4 @@
-package com.example.ali.test;
+package com.example.ali.test.controller.fragment;
 
 
 import android.net.Uri;
@@ -11,7 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ali.test.data.Movie;
+import com.example.ali.test.controller.activity.DownloadActivity;
+import com.example.ali.test.JsonParser;
+import com.example.ali.test.controller.activity.MainActivity;
+import com.example.ali.test.R;
+import com.example.ali.test.model.Movie;
 
 import org.json.JSONException;
 
@@ -24,8 +28,8 @@ import java.util.concurrent.ExecutionException;
  * A simple {@link Fragment} subclass.
  */
 public class DetailFragment extends Fragment {
-    DownloadActivity.OnResult onResultReviews;
-    DownloadActivity.OnResult onResultVideos;
+    DownloadActivity.OnResultListener onResultListenerReviews;
+    DownloadActivity.OnResultListener onResultListenerVideos;
     TextView title;
     String text = " ";
     public DetailFragment() {
@@ -68,7 +72,7 @@ public class DetailFragment extends Fragment {
         ((MainActivity)getActivity()).setParser(jsonParser);
         ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
         Log.v("Test","Reviews Url : "+builtUri.toString());
-        onResultReviews = new DownloadActivity.OnResult(){
+        onResultListenerReviews = new DownloadActivity.OnResultListener(){
             @Override
             public void onSuccess(List<Object> movies) {
                 Log.v("Test","DF. OnSuccess "+ ((Movie)movies.get(0)).getAuthor());
@@ -85,7 +89,7 @@ public class DetailFragment extends Fragment {
             }
         };
         try {
-            ((MainActivity)getActivity()).fetch(onResultReviews);
+            ((MainActivity)getActivity()).fetch(onResultListenerReviews);
         } catch (InterruptedException | MalformedURLException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
@@ -102,7 +106,7 @@ public class DetailFragment extends Fragment {
         jsonParser.setObjects(objects2);
         ((MainActivity)getActivity()).setParser(jsonParser);
         ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
-        onResultVideos = new DownloadActivity.OnResult(){
+        onResultListenerVideos = new DownloadActivity.OnResultListener(){
             @Override
             public void onSuccess(List<Object> movies) {
                 for (Object x:movies){
@@ -119,7 +123,7 @@ public class DetailFragment extends Fragment {
             }
         };
         try {
-            ((MainActivity)getActivity()).fetch(onResultVideos);
+            ((MainActivity)getActivity()).fetch(onResultListenerVideos);
         } catch (InterruptedException | MalformedURLException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

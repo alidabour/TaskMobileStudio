@@ -1,8 +1,6 @@
 package com.example.ali.test;
 
 
-import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ali.test.adapter.MovieRecycleAdapter;
+import com.example.ali.test.data.Movie;
 
 import org.json.JSONException;
 
@@ -45,6 +44,7 @@ public class MainFragment extends Fragment {
         String[] objects = {"poster_path","title"};
         jsonParser.setObjects(objects);
         ((MainActivity)getActivity()).setParser(jsonParser);
+        ((MainActivity)getActivity()).setDataModel(Movie.class.getName());
     }
 
     @Override
@@ -87,12 +87,12 @@ public class MainFragment extends Fragment {
         onResult = new DownloadActivity.OnResult(){
 
             @Override
-            public void onSuccess(List<Movie> result) {
-                movieRecycleAdapter = new MovieRecycleAdapter(getContext(), result);
+            public void onSuccess(List<Object> result) {
+                movieRecycleAdapter = new MovieRecycleAdapter(getContext(),result);
                 recyclerView.setAdapter(movieRecycleAdapter);
 
-                for (Movie m:result){
-                    Log.v("MainFragment","OnSuccess "+ m.getPosterUrl());
+                for (Object m:result){
+                    Log.v("MainFragment","OnSuccess "+ ((Movie)m).getPosterUrl());
                 }
             }
 

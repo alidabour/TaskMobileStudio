@@ -20,7 +20,7 @@ public class DownloadAsyncTask extends AsyncTask<URL,Void,String> {
     protected String doInBackground(URL... urls) {
         String result=null;
         for (URL url:urls){
-
+            Log.v("Test","Download Urls : "+urls.length);
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 

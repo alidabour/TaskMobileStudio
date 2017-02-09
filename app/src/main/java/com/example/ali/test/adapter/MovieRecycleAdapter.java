@@ -2,7 +2,6 @@ package com.example.ali.test.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.ali.test.Movie;
+import com.example.ali.test.data.Movie;
 import com.example.ali.test.R;
 
 import java.util.List;
@@ -22,8 +21,8 @@ import java.util.List;
 
 public class MovieRecycleAdapter extends RecyclerView.Adapter<MovieRecycleAdapter.ViewHolder> {
     Context context;
-    List<Movie> movies;
-    public MovieRecycleAdapter(Context context, List<Movie> movies){
+    List<Object> movies;
+    public MovieRecycleAdapter(Context context, List<Object> movies){
         this.context = context;
         this.movies=movies;
     }
@@ -35,9 +34,9 @@ public class MovieRecycleAdapter extends RecyclerView.Adapter<MovieRecycleAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.v("Test","RVA posterURL : "+movies.get(position).getPosterUrl());
-        String posterURL = "http://image.tmdb.org/t/p/w185/" + movies.get(position).getPosterUrl();
-        String title = movies.get(position).getTitle();
+//        Log.v("Test","RVA posterURL : "+movies.get(position).getPosterUrl());
+        String posterURL = "http://image.tmdb.org/t/p/w185/" + ((Movie)movies.get(position)).getPosterUrl();
+        String title = ((Movie)movies.get(position)).getTitle();
         holder.title.setText(title);
         Glide.with(context).load(posterURL).into(holder.poster);
     }

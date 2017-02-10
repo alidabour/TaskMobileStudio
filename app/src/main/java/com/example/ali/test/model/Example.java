@@ -1,4 +1,4 @@
-package com.example.ali.test;
+package com.example.ali.test.model;
 
         import java.util.List;
         import com.google.gson.annotations.Expose;

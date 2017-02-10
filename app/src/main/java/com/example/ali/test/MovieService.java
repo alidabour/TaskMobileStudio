@@ -1,6 +1,8 @@
 package com.example.ali.test;
 
 
+import com.example.ali.test.model.Example;
+
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -12,5 +14,5 @@ import rx.Observable;
 public interface MovieService {
     @GET("movie?")
     Observable<Example> getMovieData(@Query("sort_by")String sortType,
-            @Query("api_key")String api);
+                                     @Query("api_key")String api);
 }

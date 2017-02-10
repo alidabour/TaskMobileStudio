@@ -1,4 +1,4 @@
-package com.example.ali.test;
+package com.example.ali.test.model;
 
 /**
  * Created by Ali on 2/9/2017.
